@@ -14,9 +14,14 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait 
 from selenium.webdriver.common.by import By
 from multiprocessing.connection import wait
-
 import os
 import pandas as pd
+
+import schedule
+import time
+from datetime import datetime
+import pytz
+
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-dev-shm-usage")
@@ -124,3 +129,16 @@ def send_mail():
             smtp.sendmail(EMAIL_FROM, mail_loop, msg.as_string())
      
 send_mail()
+
+
+schedule.every(10).minutes.do(job)
+# schedule.every().hour.do(job)
+# schedule.every().day.at('13:58').do(job)
+# schedule.every(5).to(10).minutes.do(job)
+# schedule.every().monday.do(job)
+# schedule.every().wednesday.at("13:15").do(job)
+# schedule.every().minute.at(":17").do(job)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1) # wait one minute
