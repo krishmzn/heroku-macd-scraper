@@ -12,7 +12,6 @@ from selenium.webdriver.support import expected_conditions as EC #required for p
 
 import os
 import pandas as pd
-
 import schedule
 import time
 
