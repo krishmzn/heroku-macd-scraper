@@ -29,65 +29,65 @@ chrome_options.add_argument("--no-sandbox")
 chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
-# email list of people we want ot email to
-# emaillist = ['angelamaharjan96@gmail.com', 'kimmhrz@gmail.com', 'supalamhrzn@gmail.com']
-emaillist = ['kimmhrz@gmail.com']
+def job():
 
-driver.get("https://nepsealpha.com/trading-signals/tech")
+    # email list of people we want ot email to
+    # emaillist = ['angelamaharjan96@gmail.com', 'kimmhrz@gmail.com', 'supalamhrzn@gmail.com']
+    emaillist = ['kimmhrz@gmail.com']
 
-tkr = [ ]
-macds = [ ]
+    driver.get("https://nepsealpha.com/trading-signals/tech")
 
-driver.implicitly_wait(10)
-wait = WebDriverWait(driver, 10)
+    tkr = [ ]
+    macds = [ ]
 
-# selecting 100 rows on the table from the default 10
-wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "#funda-table_length > label > select"))).click()
-wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "#funda-table_length > label > select > option:nth-child(4)"))).click()
+    driver.implicitly_wait(10)
+    wait = WebDriverWait(driver, 10)
 
-# loop for 2 pages
-for j in range(2):
-    # For Ticker
-    driver.implicitly_wait(5)
-    tickers = driver.find_elements_by_css_selector("#funda-table > tbody > tr > td.fixed-left-header")
-    for ticker in tickers:
-        tkr.append(ticker.text)
-        
-    # For MACD
-    macd = driver.find_elements_by_xpath("/html/body/div[1]/div[3]/div/div/div/div[2]/div/div/div/div[3]/div[2]/table/tbody/tr/td[11]")
-    for i in macd:
-        macds.append(i.text)
-        
-    # Navigate to Next Page    
-    wait.until(EC.visibility_of_element_located((By.XPATH, "/html/body/div[1]/div[3]/div/div/div/div[2]/div/div/div/div[5]/a[2]"))).click()
+    # selecting 100 rows on the table from the default 10
+    wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "#funda-table_length > label > select"))).click()
+    wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "#funda-table_length > label > select > option:nth-child(4)"))).click()
 
-# Creating a dataframe
-df = {'TICKER': tkr, 'MACD': macds}
-dataset = pd.DataFrame.from_dict(df, orient = 'index')
-dataset = dataset.transpose()
+    # loop for 2 pages
+    for j in range(2):
+        # For Ticker
+        driver.implicitly_wait(5)
+        tickers = driver.find_elements_by_css_selector("#funda-table > tbody > tr > td.fixed-left-header")
+        for ticker in tickers:
+            tkr.append(ticker.text)
+            
+        # For MACD
+        macd = driver.find_elements_by_xpath("/html/body/div[1]/div[3]/div/div/div/div[2]/div/div/div/div[3]/div[2]/table/tbody/tr/td[11]")
+        for i in macd:
+            macds.append(i.text)
+            
+        # Navigate to Next Page    
+        wait.until(EC.visibility_of_element_located((By.XPATH, "/html/body/div[1]/div[3]/div/div/div/div[2]/div/div/div/div[5]/a[2]"))).click()
 
-# Removing duplicate entries
-dataset = dataset.drop_duplicates()
+    # Creating a dataframe
+    df = {'TICKER': tkr, 'MACD': macds}
+    dataset = pd.DataFrame.from_dict(df, orient = 'index')
+    dataset = dataset.transpose()
 
-# Filtering Data
-bullish = dataset.loc[dataset['MACD'] == 'Bullish']
-bullish_list = list(bullish['TICKER'])
-bullish_list = str(bullish_list)
-bullish_list = bullish_list.replace("'", " ")
-bullish_list = bullish_list.replace("[", "")
-bullish_list = bullish_list.replace("]", "")
-print(bullish_list)
+    # Removing duplicate entries
+    dataset = dataset.drop_duplicates()
 
-# Creating Variables
-EMAIL_FROM = 'krishmzn69@gmail.com'
-SMTP_PASSWORD = 'iciilcvizsgdtqsv'
-EMAIL_TO = 'kimmhrz@gmail.com'
+    # Filtering Data
+    bullish = dataset.loc[dataset['MACD'] == 'Bullish']
+    bullish_list = list(bullish['TICKER'])
+    bullish_list = str(bullish_list)
+    bullish_list = bullish_list.replace("'", " ")
+    bullish_list = bullish_list.replace("[", "")
+    bullish_list = bullish_list.replace("]", "")
+    print(bullish_list)
 
-EMAIL_SUBJECT = 'NEPSE bullish crossover of the day'
-MESSAGE_BODY = 'MACD technical analysis summary'
+    # Email Part starts here
+    # Creating Variables
+    EMAIL_FROM = 'krishmzn69@gmail.com'
+    SMTP_PASSWORD = 'iciilcvizsgdtqsv'
+    EMAIL_TO = 'kimmhrz@gmail.com'
 
-
-def send_mail():
+    EMAIL_SUBJECT = 'NEPSE bullish crossover of the day'
+    MESSAGE_BODY = 'MACD technical analysis summary'
     
     msg = MIMEMultipart("alternative")
     msg['Subject'] = EMAIL_SUBJECT
@@ -128,9 +128,9 @@ def send_mail():
             smtp.login(EMAIL_FROM, SMTP_PASSWORD)
             smtp.sendmail(EMAIL_FROM, mail_loop, msg.as_string())
      
-send_mail()
+job()
 
-schedule.every(10).minutes.do(job)
+schedule.every(1).minutes.do(job)
 # schedule.every().hour.do(job)
 # schedule.every().day.at('13:58').do(job)
 # schedule.every(5).to(10).minutes.do(job)
