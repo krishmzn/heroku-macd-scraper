@@ -10,22 +10,23 @@ import os
 from email.message import EmailMessage
 import ssl
 
-from multiprocessing.connection import wait
-from typing import List
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait #wating for content to load
-from selenium.webdriver.support import expected_conditions as EC #required for passing 
-from selenium.webdriver.common.keys import Keys
+from multiprocessing.connection import wait
+
+import os
 import pandas as pd
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
 # email list of people we want ot email to
 # emaillist = ['angelamaharjan96@gmail.com', 'kimmhrz@gmail.com', 'supalamhrzn@gmail.com']
 emaillist = ['kimmhrz@gmail.com']
-
-
-path = 'C:\\Users\Krish Maharjan\Downloads\edgedriver_win64\msedgedriver.exe'
-driver = webdriver.Edge(executable_path=path)
 
 driver.get("https://nepsealpha.com/trading-signals/tech")
 
