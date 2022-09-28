@@ -1,26 +1,20 @@
-import email
 from email.mime.multipart import MIMEMultipart
-from email.mime.application import MIMEApplication
 from email.mime.text import MIMEText
-from email.policy import SMTP
-from msilib.schema import File
 import smtplib
 import os
 
-from email.message import EmailMessage
 import ssl
 
 from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait 
 from selenium.webdriver.common.by import By
-from multiprocessing.connection import wait
+from selenium.webdriver.support.ui import WebDriverWait #wating for content to load
+from selenium.webdriver.support import expected_conditions as EC #required for passing 
+
 import os
 import pandas as pd
 
 import schedule
 import time
-from datetime import datetime
-import pytz
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--headless")
@@ -30,7 +24,6 @@ chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
 def job():
-
     # email list of people we want ot email to
     # emaillist = ['angelamaharjan96@gmail.com', 'kimmhrz@gmail.com', 'supalamhrzn@gmail.com']
     emaillist = ['kimmhrz@gmail.com']
@@ -97,21 +90,21 @@ def job():
     # Create the plain-text and HTML version of your message
     html = """\
         <!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- css -->
-    <style>
-        h2, h4{
-            color:#000;
-        }
-    </style>
-</head>
-<body>
-    <!-- body -->
-    <h2>MACD bullish crossovers today</h2>
-    <h4>$(data)</h4>
-</body>
-</html>
+        <html lang="en">
+        <head>
+            <!-- css -->
+            <style>
+                h2, h4{
+                    color:#000;
+                }
+            </style>
+        </head>
+        <body>
+            <!-- body -->
+            <h2>MACD bullish crossovers today</h2>
+            <h4>$(data)</h4>
+        </body>
+        </html>
             """
         
     html = html.replace("$(data)", bullish_list)
