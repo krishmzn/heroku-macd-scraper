@@ -130,7 +130,6 @@ def send_mail():
      
 send_mail()
 
-
 schedule.every(10).minutes.do(job)
 # schedule.every().hour.do(job)
 # schedule.every().day.at('13:58').do(job)
