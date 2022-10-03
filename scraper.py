@@ -24,7 +24,7 @@ driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), o
 def job():
     # email list of people we want ot email to
     # emaillist = ['angelamaharjan96@gmail.com', 'kimmhrz@gmail.com', 'supalamhrzn@gmail.com']
-    emaillist = ['kimmhrz@gmail.com']
+    emaillist = ['krishmzn69@gmail.com']
 
     driver.get("https://nepsealpha.com/trading-signals/tech")
 
@@ -73,7 +73,7 @@ def job():
 
     # Email Part starts here
     # Creating Variables
-    EMAIL_FROM = 'krishmzn69@gmail.com'
+    EMAIL_FROM = 'kcapital777@gmail.com'
     SMTP_PD = 'aqfdkqdawdzqocye'
     EMAIL_TO = 'kimmhrz@gmail.com'
 
