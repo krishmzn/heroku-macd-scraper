@@ -2,7 +2,6 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import smtplib
 import os
-
 import ssl
 
 from selenium import webdriver
@@ -75,7 +74,7 @@ def job():
     # Email Part starts here
     # Creating Variables
     EMAIL_FROM = 'krishmzn69@gmail.com'
-    SMTP_PASSWORD = 'iciilcvizsgdtqsv'
+    SMTP_PD = 'aqfdkqdawdzqocye'
     EMAIL_TO = 'kimmhrz@gmail.com'
 
     EMAIL_SUBJECT = 'NEPSE bullish crossover of the day'
@@ -117,14 +116,14 @@ def job():
     # looping through email list
     for mail_loop in emaillist:
         with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
-            smtp.login(EMAIL_FROM, SMTP_PASSWORD)
+            smtp.login(EMAIL_FROM, SMTP_PD)
             smtp.sendmail(EMAIL_FROM, mail_loop, msg.as_string())
      
 job()
 
-# schedule.every(1).minutes.do(job)
+schedule.every(1).minutes.do(job)
 # schedule.every().hour.do(job)
-schedule.every().day.at('18:00').do(job)
+# schedule.every().day.at('18:00').do(job)
 # schedule.every(5).to(10).minutes.do(job)
 # schedule.every().monday.do(job)
 # schedule.every().wednesday.at("13:15").do(job)
