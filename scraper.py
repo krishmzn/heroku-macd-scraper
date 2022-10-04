@@ -23,7 +23,6 @@ driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), o
 
 def job():
     # email list of people we want ot email to
-    # emaillist = ['angelamaharjan96@gmail.com', 'kimmhrz@gmail.com', 'supalamhrzn@gmail.com']
     emaillist = ['krishmzn69@gmail.com']
 
     driver.get("https://nepsealpha.com/trading-signals/tech")
@@ -74,8 +73,8 @@ def job():
     # Email Part starts here
     # Creating Variables
     EMAIL_FROM = 'kcapital777@gmail.com'
-    SMTP_PD = 'aqfdkqdawdzqocye'
-    EMAIL_TO = 'kimmhrz@gmail.com'
+    SMTP_P = 'aqfdkqdawdzqocye'
+    EMAIL_TO = 'krishmzn69@gmail.com'
 
     EMAIL_SUBJECT = 'NEPSE bullish crossover of the day'
     MESSAGE_BODY = 'MACD technical analysis summary'
@@ -116,10 +115,8 @@ def job():
     # looping through email list
     for mail_loop in emaillist:
         with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
-            smtp.login(EMAIL_FROM, SMTP_PD)
-            smtp.sendmail(EMAIL_FROM, mail_loop, msg.as_string())
-     
-job()
+            smtp.login(EMAIL_FROM, SMTP_P)
+            smtp.sendmail(EMAIL_FROM, mail_loop, krishmzn69.as_string())
 
 schedule.every(1).minutes.do(job)
 # schedule.every().hour.do(job)
