@@ -22,8 +22,8 @@ chrome_options.add_argument("--no-sandbox")
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
 
 def job():
-    # email list of people we want ot email to
-    emaillist = ['krishmzn69@gmail.com']
+    
+    emaillist = [' '] # email list of people we want ot email to
 
     driver.get("https://nepsealpha.com/trading-signals/tech")
 
@@ -72,8 +72,8 @@ def job():
 
     # Email Part starts here
     # Creating Variables
-    EMAIL_FROM = 'kcapital777@gmail.com'
-    SMTP_P = 'aqfdkqdawdzqocye'
+    EMAIL_FROM = ' ' # Your mail
+    SMTP_P = ' ' # Your password
     EMAIL_TO = 'krishmzn69@gmail.com'
 
     EMAIL_SUBJECT = 'NEPSE bullish crossover of the day'
