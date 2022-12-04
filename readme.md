@@ -1,3 +1,3 @@
 # This web scraper is deployed into heroku
-### It can automatically scrape financial data and email us with scripts with positive MACD signal.
-### The whole process is scheduled and the emails in the 'emaillist' can get the notification as scheduled and all this is automated.
+### It will automatically scrape financial data and email all the receier emails in the 'emaillist' with the name of stocks with positive MACD signal.
+### The whole process is automated and the emails in the 'emaillist' will get the notification as scheduled.
