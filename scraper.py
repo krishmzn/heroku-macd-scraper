@@ -23,7 +23,7 @@ driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), o
 
 def job():
     
-    emaillist = [' '] # email list of people we want ot email to
+    emaillist = [' '] # email list of people we wish to email
 
     driver.get("https://nepsealpha.com/trading-signals/tech")
 
@@ -72,9 +72,9 @@ def job():
 
     # Email Part starts here
     # Creating Variables
-    EMAIL_FROM = ' ' # Your mail
-    SMTP_P = ' ' # Your password
-    EMAIL_TO = 'krishmzn69@gmail.com'
+    EMAIL_FROM = ' ' # Sender's email
+    SMTP_P = ' ' # Password for sender's email
+    EMAIL_TO = ' ' # Receiver's email
 
     EMAIL_SUBJECT = 'NEPSE bullish crossover of the day'
     MESSAGE_BODY = 'MACD technical analysis summary'
